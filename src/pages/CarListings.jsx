@@ -19,6 +19,7 @@ const CarListings = () => {
     carSeatsId: 0,
     carTransmissionTypeId: 0,
     carVersionId: 0,
+    userId: null,
   });
   const [carBrands, setCarBrands] = useState([]);
   const [carModels, setCarModels] = useState([]);
