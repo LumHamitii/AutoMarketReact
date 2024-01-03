@@ -57,7 +57,7 @@ const Navbar = () => {
                 {renderDropdown('search')}
               </li>
               <li className='relative'>
-                <Link to="/sell/cars" onClick={() => toggleDropdown('sell')} className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
+                <Link to="#" onClick={() => toggleDropdown('sell')} className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
                   Sell {openDropdown === 'sell' ? <ChevronUpIcon className="w-4 h-4 ml-1" /> : <ChevronDownIcon className="w-4 h-4 ml-1" />}
                 </Link>
                 {renderDropdown('sell')}

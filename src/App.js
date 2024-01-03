@@ -5,7 +5,8 @@ const App = () => {
   return (
     <>
     
-    <CarListings/>
+    {/* <CarListings/> */}
+    <Navbar/>
     </>
   );
 };

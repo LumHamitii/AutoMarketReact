@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import CarValuation from './pages/CarValuation';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Admin from './pages/Admin';
@@ -26,6 +27,8 @@ const AppRouter = () => {
 
 root.render(
   <Router>
-    <AppRouter />
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
   </Router>
 );

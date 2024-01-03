@@ -1,8 +1,11 @@
+// LoginPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [loginData, setLoginData] = useState({
     email: '',
@@ -28,6 +31,7 @@ const LoginPage = () => {
       }
 
       setError(null);
+      login();
       navigate('/admin');
     } catch (error) {
       console.error('Login failed:', error);
