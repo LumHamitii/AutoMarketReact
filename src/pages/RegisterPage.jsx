@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const RegisterPage = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-gray-100 p-8 rounded-lg shadow-lg bg-white border-2 border-gray-200">
+      <div className="bg-white-100 p-8 rounded-lg shadow-lg bg-white border-2 border-gray-200">
         <div className="p-4 rounded-md shadow-md bg-white inset-shadow">
           <h2 className="text-3xl font-extrabold text-gray-800 mb-4">Create an Account</h2>
         </div>
