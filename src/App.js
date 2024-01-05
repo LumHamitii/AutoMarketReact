@@ -5,8 +5,7 @@ import CarShow from "./pages/CarShow";
 const App = () => {
   return (
     <>
-    <CarShow/>
-    
+    <Navbar/>
     </>
   );
 };

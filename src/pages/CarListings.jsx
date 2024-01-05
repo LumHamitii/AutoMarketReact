@@ -19,7 +19,7 @@ const CarListings = () => {
     carSeatsId: 0,
     carTransmissionTypeId: 0,
     carVersionId: 0,
-    userId: null,
+    
   });
   const [carBrands, setCarBrands] = useState([]);
   const [carModels, setCarModels] = useState([]);
@@ -78,12 +78,16 @@ const CarListings = () => {
   const handleSave = async () => {
     try {
       await axios.post('https://localhost:7136/api/ApiCar', newCar);
-      // Optionally, you can fetch the updated car list after saving
-      // to display the latest data
+      console.log('Car saved successfully!');
+      window.location.href = '/used-&-new-cars';
+      
     } catch (error) {
       console.error('Error saving car:', error);
+      console.log(error.response.data); // Log the detailed error response from the server
     }
   };
+  
+  
  
 
   return (

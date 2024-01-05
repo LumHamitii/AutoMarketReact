@@ -9,6 +9,8 @@ import { AuthProvider } from './AuthContext';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Admin from './pages/Admin';
+import CarListings from './pages/CarListings';
+import CarShow from './pages/CarShow';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,6 +20,8 @@ const AppRouter = () => {
       <Route path="/" element={<App />} />
       <Route path="/car-valuation" element={<CarValuation />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/cars" element={<CarListings />} />
+      <Route path="/used-&-new-cars" element={<CarShow />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="*" element={<div>Page not found</div>} />
