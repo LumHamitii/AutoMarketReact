@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-
+import { Link} from 'react-router-dom';
 const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -78,6 +78,9 @@ const LoginPage = () => {
           >
             Login
           </button>
+          <Link to="/">
+          <p>Go back home</p>
+          </Link>
         </form>
 
         {error && <div className="text-red-500 mt-4 text-center">{error}</div>}

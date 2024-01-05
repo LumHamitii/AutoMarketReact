@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const CarDetails = () => {
   const { id } = useParams();
   const [car, setCar] = useState(null);
-
+ 
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
@@ -22,8 +22,9 @@ const CarDetails = () => {
   if (!car) {
     return <div>Loading...</div>;
   }
-
+  
   return (
+  
     <div className="container mx-auto mt-8">
       <h1 className="text-3xl mb-4">Car Details</h1>
       <div className="border p-4">

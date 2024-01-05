@@ -1,8 +1,11 @@
 // CarListings.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../AuthContext';
+import { Navigate } from 'react-router-dom';
 
 const CarListings = () => {
+  const { isAuthenticated } = useAuth();
   const [newCar, setNewCar] = useState({
     description: '',
     price: 0,
@@ -20,7 +23,9 @@ const CarListings = () => {
     carTransmissionTypeId: 0,
     carVersionId: 0,
     
-  });
+  }
+  );
+ 
   const [carBrands, setCarBrands] = useState([]);
   const [carModels, setCarModels] = useState([]);
   const [carConditions, setCarConditions] = useState([]);
@@ -64,6 +69,7 @@ const CarListings = () => {
       } catch (error) {
         console.error('Error fetching dropdown options:', error);
       }
+     
     };
 
     fetchDropdownOptions();
@@ -74,7 +80,7 @@ const CarListings = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  
   const handleSave = async () => {
     try {
       await axios.post('https://localhost:7136/api/ApiCar', newCar);
@@ -87,9 +93,11 @@ const CarListings = () => {
     }
   };
   
-  
  
-
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  
   return (
     
       <div className="container mx-auto mt-8 flex justify-center items-center">
