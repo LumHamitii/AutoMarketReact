@@ -11,6 +11,7 @@ import RegisterPage from './pages/RegisterPage';
 import Admin from './pages/Admin';
 import CarListings from './pages/CarListings';
 import CarShow from './pages/CarShow';
+import CarDetails from './pages/CarDetails';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -22,6 +23,7 @@ const AppRouter = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/cars" element={<CarListings />} />
       <Route path="/used-&-new-cars" element={<CarShow />} />
+      <Route path="/car/:id" element={<CarDetails />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="*" element={<div>Page not found</div>} />

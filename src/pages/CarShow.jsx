@@ -23,8 +23,8 @@ const CarShow = () => {
       <h1 className="text-3xl mb-4">Car Show</h1>
       <div className="flex flex-wrap">
         {cars.map((car) => (
-          <div key={car.id} className="flex-grow w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
-            <div className="border p-4 mb-4">
+          <Link key={car.id} to={`/car/${car.id}`} className="flex-grow w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
+          <div className="border p-4 mb-4">
             <p>Brand: {car.carBrand?.brandName}</p> 
             <p>Model: {car.carModel?.modelName}</p>
             <p>Color: {car.carColor?.color}</p>
@@ -32,12 +32,8 @@ const CarShow = () => {
             <p>Mileage: {car.carMileage?.mileage}</p>
             <p>Location: {car.location}</p>
             <h3 className="text-xl font-bold">{car.price}$</h3>
-            
           </div>
-         
-            <Link to={`/car/${car.id}`} className="text-blue-500">View Details</Link>
-         
-          </div>
+        </Link>
         ))}
       </div>
     </div>
