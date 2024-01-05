@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   const dropdownOptions = {
-    search: ['Used & New Cars', 'Electric Cars', 'Motorcycles'],
+    search: ['Used & New Cars', 'Motorcycles', 'Trucks'],
     sell: ['Cars', 'Motorcycles', 'Trucks', 'Car valuation'],
     inform: ['Car-Magazine', 'Blog', 'Car manufacturers'],
   };

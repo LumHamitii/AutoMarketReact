@@ -37,6 +37,7 @@ const AppRouter = () => {
 root.render(
   <Router>
     <AuthProvider>
+      
       <AppRouter />
     </AuthProvider>
   </Router>

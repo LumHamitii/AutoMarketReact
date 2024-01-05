@@ -1,12 +1,15 @@
 import Navbar from "./components/Navbar";
-// import CarListings from "./pages/CarListings";
-// import CarShow from "./pages/CarShow";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
-    <>
-    <Navbar/>
-    </>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="flex-grow">
+        {/* Your page content */}
+      </div>
+      <Footer />
+    </div>
   );
 };
 
