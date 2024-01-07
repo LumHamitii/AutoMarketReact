@@ -30,11 +30,11 @@ const CarDetails = () => {
       <div className="border p-4">
         <p>Brand: {car.carBrand?.brandName}</p>
         <p>Model: {car.carModel?.modelName}</p>
-        <p>EnginePower: {car.enginePower}HP</p>
+        <p>Engine Power: {car.enginePower}HP</p>
         <p>Condition: {car.carCondition?.condition}</p>
         <p>Color: {car.carColor?.color}</p>
-        <p>FuelType: {car.carFuelType?.fuelType}</p>
-        <p>TransMissionType: {car.carTransmissionType?.transmissionType}</p>
+        <p>Fuel Type: {car.carFuelType?.fuelType}</p>
+        <p>Transmission Type: {car.carTransmissionType?.transmissionType}</p>
         <p>Mileage: {car.carMileage?.mileage}</p>
         <p>Seats: {car.carSeats?.numberofSeats}</p>
         <p>Location: {car.location}</p>

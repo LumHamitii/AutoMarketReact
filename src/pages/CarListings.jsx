@@ -119,7 +119,7 @@ const CarListings = () => {
       });
   
       console.log('Car saved successfully!');
-      window.location.href = '/used-&-new-cars';
+      // window.location.href = '/used-&-new-cars';
     } catch (error) {
       if (error.response && error.response.status === 400 && error.response.data.errors) {
         console.log('Validation errors:', error.response.data.errors);
@@ -169,7 +169,7 @@ const CarListings = () => {
           </select>
           <label>Car Mileage:</label>
           <select name="carMileageId" value={newCar.carMileageId} onChange={handleInputChange}>
-            <option value={0}>Select Brand</option>
+            <option value={0}>Select Mileage</option>
             {carMileages.map((mileage) => (
               <option key={mileage.id} value={mileage.id}>
                 {mileage.mileage}
