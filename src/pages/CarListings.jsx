@@ -22,7 +22,7 @@ const CarListings = () => {
     carSeatsId: 0,
     carTransmissionTypeId: 0,
     carVersionId: 0,
-    
+    files: [],
   }
   );
  
@@ -80,16 +80,52 @@ const CarListings = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const handleFileChange = (e) => {
+    setNewCar({
+      ...newCar,
+      files: e.target.files, 
+    });
+  };
   
   const handleSave = async () => {
     try {
-      await axios.post('https://localhost:7136/api/ApiCar', newCar);
+      const formData = new FormData();
+  
+      formData.append('description', newCar.description);
+      formData.append('price', newCar.price);
+      formData.append('firstRegistration', newCar.firstRegistration);
+      formData.append('enginePower', newCar.enginePower);
+      formData.append('features', newCar.features);
+      formData.append('location', newCar.location);
+      formData.append('carBrandId', newCar.carBrandId);
+      formData.append('carModelId', newCar.carModelId);
+      formData.append('carConditionId', newCar.carConditionId);
+      formData.append('carColorId', newCar.carColorId);
+      formData.append('carFuelTypeId', newCar.carFuelTypeId);
+      formData.append('carMileageId', newCar.carMileageId);
+      formData.append('carSeatsId', newCar.carSeatsId);
+      formData.append('carTransmissionTypeId', newCar.carTransmissionTypeId);
+      formData.append('carVersionId', newCar.carVersionId);
+  
+      
+      for (let i = 0; i < newCar.files.length; i++) {
+        formData.append('Files', newCar.files[i]);
+      }
+  
+      await axios.post('https://localhost:7136/api/ApiCar', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
       console.log('Car saved successfully!');
       window.location.href = '/used-&-new-cars';
-      
     } catch (error) {
-      console.error('Error saving car:', error);
-      console.log(error.response.data); // Log the detailed error response from the server
+      if (error.response && error.response.status === 400 && error.response.data.errors) {
+        console.log('Validation errors:', error.response.data.errors);
+      } else {
+        console.error('Error saving car:', error);
+      }
     }
   };
   
@@ -210,7 +246,8 @@ const CarListings = () => {
           </option>
         ))}
       </select>
-
+         <label>Photos:</label>
+          <input type="file" name="photos" multiple onChange={handleFileChange} />
           <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4" onClick={handleSave}>Save Car</button>
         </div>
       </div>

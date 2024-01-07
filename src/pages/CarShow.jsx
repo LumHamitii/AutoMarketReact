@@ -102,7 +102,15 @@ const CarShow = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
         {sortedCars.map((car) => (
-          <Link key={car.id} to={`/car/${car.id}`} className="flex-grow p-4">
+          <Link key={car.id} to={`/car/${car.id}`} className="flex-grow w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-4">
+            <div className="border p-4 mb-4">
+              {car.photos && car.photos.length > 0 && (
+                <img
+                  src={`data:${car.photos[0].contentType};base64,${car.photos[0].photoData}`}
+                  alt={`Car Photo ${car.id}`}
+                  className="w-full h-32 object-cover mb-2"
+                />
+              )}
             <div className="border p-4 mb-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
               <p className="text-lg font-semibold mb-2">{car.carBrand?.brandName}</p>
               <p className="text-base md:text-lg mb-2">Model: {car.carModel?.modelName}</p>
@@ -112,11 +120,12 @@ const CarShow = () => {
               <p className="text-base md:text-lg mb-2">Location: {car.location}</p>
               <h3 className="text-xl md:text-2xl font-bold">${car.price}</h3>
             </div>
+            </div>
           </Link>
         ))}
       </div>
     </div>
-
+    
     <Footer />
   </div>
   );

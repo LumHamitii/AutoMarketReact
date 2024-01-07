@@ -41,8 +41,23 @@ const CarDetails = () => {
         <p>Features: {car.features}</p>
         <p>Description: {car.description}</p>
         <h3 className="text-xl font-bold">{car.price}$</h3>
+        <div className="mt-4">
+          <h3 className="text-lg font-bold">Photos:</h3>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+            {car.photos.map((photo) => (
+              <div key={photo.id} style={{ margin: '10px' }}>
+                <img
+                  src={`data:${photo.contentType};base64,${photo.photoData}`}
+                  alt={`Car Photo ${car.id}`}
+                  style={{ maxWidth: '200px', maxHeight: '200px' }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
+    
   );
 };
 
