@@ -38,6 +38,7 @@ const CarDetails = () => {
         <p>Mileage: {car.carMileage?.mileage}</p>
         <p>Seats: {car.carSeats?.numberofSeats}</p>
         <p>Location: {car.location}</p>
+        <p>First Registration: {car.firstRegistration}</p>
         <p>Features: {car.features}</p>
         <p>Description: {car.description}</p>
         <h3 className="text-xl font-bold">{car.price}$</h3>
