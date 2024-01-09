@@ -13,7 +13,9 @@ import CarListings from './pages/CarListings';
 import CarShow from './pages/CarShow';
 import CarDetails from './pages/CarDetails';
 import MotorcycleListings from './pages/MotorcycleListings';
-
+import Blog from './pages/Blog';
+import BlogDetails from './pages/BlogDetails';
+import CreateBlog from './pages/CreateBlog';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppRouter = () => {
@@ -28,7 +30,9 @@ const AppRouter = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/motorcycles" element={<MotorcycleListings />} />
-
+      <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:id" element={<BlogDetails />} />
+      <Route path="/create-blog" element={<CreateBlog />} />
       <Route path="*" element={<div>Page not found</div>} />
     </Routes>
   );
@@ -37,7 +41,6 @@ const AppRouter = () => {
 root.render(
   <Router>
     <AuthProvider>
-      
       <AppRouter />
     </AuthProvider>
   </Router>
