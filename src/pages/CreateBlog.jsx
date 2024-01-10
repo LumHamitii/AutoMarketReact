@@ -7,7 +7,7 @@ const CreateBlog = () => {
 
   const [formData, setFormData] = useState({
     blogTitle: '',
-    blogContent: '', // Changed from ReactQuill to a regular text area
+    blogContent: '', 
     coverImage: null,
     publishedDate: '',
     author: '',
@@ -37,7 +37,7 @@ const CreateBlog = () => {
         },
       });
 
-      console.log(response.data); // Log the response for debugging
+      console.log(response.data); 
 
       navigate('/blog');
     } catch (error) {
@@ -73,7 +73,7 @@ const CreateBlog = () => {
             value={formData.blogContent}
             onChange={handleInputChange}
             className="mt-1 p-2 border rounded-md w-full"
-            rows="10" // Set the number of rows as needed
+            rows="10"
           />
         </div>
         <div className="mb-4">
