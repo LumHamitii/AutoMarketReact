@@ -37,7 +37,7 @@ const CarList = () => {
             {cars.map(car => (
               <li key={car.id} className="flex justify-between items-center">
                 <div>
-                  {/* <strong>Brand:</strong> {car.carBrand ? car.motorcycleBrand.brandName : 'N/A'}<br/> */}
+                  <strong>Brand:</strong> {car.carBrand ? car.carBrand.brandName : 'N/A'}<br/>
                   <strong>Description:</strong> {car.description}<br />
                   <strong>Price:</strong> {car.price}<br />
                 </div>
