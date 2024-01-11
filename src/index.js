@@ -33,7 +33,7 @@ const AppRouter = () => {
       <Route path="/car/:id" element={<CarDetails />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin" element={<Admin />} />
-      <Route path="/motorcycles" element={<MotorcycleListings />} />
+      <Route path="/motorcycle-listing" element={<MotorcycleListings />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:id" element={<BlogDetails />} />
       <Route path="/create-blog" element={<CreateBlog />} />

@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { useAuth } from '../AuthContext';
 import { Link, Navigate } from 'react-router-dom';
-
+import MotorcycleList from '../components/MotorcycleList';
+import CarList from '../components/CarList';
 const Admin = () => {
   const { isAuthenticated, logout } = useAuth();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [showMotorcycles, setShowMotorcycles] = useState(false);
+  const [showCars, setShowCars] = useState(false);
+  
+  const handleMotorcycleClick = () => {
+    setShowMotorcycles(true);
+    setShowCars(false);
+  };
 
+  const handleCarClick = () => {
+    setShowCars(true);
+    setShowMotorcycles(false);
+  };
   const handleLogout = () => {
     logout();
   };
@@ -26,15 +38,11 @@ const Admin = () => {
           <h2 className="text-2xl font-semibold">Admin Panel</h2>
         </div>
         <ul>
-          <Link to="/cars">
-          <li className="p-4 cursor-pointer hover:bg-gray-700">
-          <li>Cars</li></li>
-          </Link>
-          <Link to="/motorcycles">
-          <li className="p-4 cursor-pointer hover:bg-gray-700">
+          <li className='"p-4 cursor-pointer hover:bg-gray-700' onClick={handleCarClick}>Cars</li>
+         
+          <li className="p-4 cursor-pointer hover:bg-gray-700" onClick={handleMotorcycleClick}>
             Motorcycles
           </li>
-          </Link>
           <li className="p-4 cursor-pointer hover:bg-gray-700">
             Trucks
           </li>
@@ -92,6 +100,12 @@ const Admin = () => {
         </div>
 
         <h2 className="text-3xl font-semibold mb-6">Welcome to the Admin Panel</h2>
+        <div>
+    
+          {showMotorcycles && <MotorcycleList />}
+          {showCars && <CarList />}
+        </div>
+       
 
       </div>
     </div>

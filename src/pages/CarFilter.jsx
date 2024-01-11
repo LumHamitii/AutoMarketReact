@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate  } from 'react-router-dom';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const CarFilter = () => {
     const navigate = useNavigate();
@@ -102,12 +104,20 @@ const CarFilter = () => {
   
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className='flex flex-col min-h-screen'>
+      <Navbar/>
+    <div className="container mx-auto mt-8 flex-grow">
       <h1 className="text-3xl mb-4">Filter Cars</h1>
-
-      <div className="flex flex-col gap-4">
-      <label>Car Brand:</label>
-          <select name="brandId" value={filter.brandId} onChange={handleInputChange}>
+  
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div>
+          <label className="text-sm">Car Brand:</label>
+          <select
+            name="brandId"
+            value={filter.brandId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
             <option value={0}>Select Brand</option>
             {carBrands.map((brand) => (
               <option key={brand.id} value={brand.id}>
@@ -115,8 +125,16 @@ const CarFilter = () => {
               </option>
             ))}
           </select>
-          <label>Car Mileage:</label>
-          <select name="mileageId" value={filter.mileageId} onChange={handleInputChange}>
+        </div>
+  
+        <div>
+          <label className="text-sm">Car Mileage:</label>
+          <select
+            name="mileageId"
+            value={filter.mileageId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
             <option value={0}>Select Mileage</option>
             {carMileages.map((mileage) => (
               <option key={mileage.id} value={mileage.id}>
@@ -124,9 +142,16 @@ const CarFilter = () => {
               </option>
             ))}
           </select>
+        </div>
   
-          <label>Car Model:</label>
-          <select name="modelId" value={filter.modelId} onChange={handleInputChange}>
+        <div>
+          <label className="text-sm">Car Model:</label>
+          <select
+            name="modelId"
+            value={filter.modelId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
             <option value={0}>Select Model</option>
             {carModels.map((model) => (
               <option key={model.id} value={model.id}>
@@ -134,91 +159,145 @@ const CarFilter = () => {
               </option>
             ))}
           </select>
+        </div>
   
-          <label>Car Condition:</label>
-      <select name="conditionId" value={filter.conditionId} onChange={handleInputChange}>
-        <option value={0}>Select Condition</option>
-        {carConditions.map((condition) => (
-          <option key={condition.id} value={condition.id}>
-            {condition.condition}
-          </option>
-        ))}
-      </select>
-
-      <label>Car Color:</label>
-      <select name="colorId" value={filter.colorId} onChange={handleInputChange}>
-        <option value={0}>Select Color</option>
-        {carColors.map((color) => (
-          <option key={color.id} value={color.id}>
-            {color.color}
-          </option>
-        ))}
-      </select>
-
-      <label>Car Fuel Type:</label>
-      <select name="fuelTypeId" value={filter.fuelTypeId} onChange={handleInputChange}>
-        <option value={0}>Select Fuel Type</option>
-        {carFuelTypes.map((fuelType) => (
-          <option key={fuelType.id} value={fuelType.id}>
-            {fuelType.fuelType}
-          </option>
-        ))}
-      </select>
-
-      <label>Car Seats:</label>
-      <select name="seatsId" value={filter.seatsId} onChange={handleInputChange}>
-        <option value={0}>Select Seats</option>
-        {carSeats.map((seat) => (
-          <option key={seat.id} value={seat.id}>
-            {seat.numberofSeats}
-          </option>
-        ))}
-      </select>
-
-      <label>Car Transmission Type:</label>
-      <select name="transmissionTypeId" value={filter.transmissionTypeId} onChange={handleInputChange}>
-        <option value={0}>Select Transmission Type</option>
-        {carTransmissionTypes.map((transmissionType) => (
-          <option key={transmissionType.id} value={transmissionType.id}>
-            {transmissionType.transmissionType}
-          </option>
-        ))}
-      </select>
-
-      <label>Car Version:</label>
-      <select name="versionId" value={filter.versionId} onChange={handleInputChange}>
-        <option value={0}>Select Version</option>
-        {carVersions.map((version) => (
-          <option key={version.id} value={version.id}>
-            {version.versionType}
-          </option>
-        ))}
-      </select>
-        <label>Start Date:</label>
-        <input
-          type="date"
-          name="startDate"
-          value={filter.startDate || ''}
-          onChange={(e) => handleDateChange(e.target.value, 'startDate')}
-        />
-
-        <label>End Date:</label>
-        <input
-          type="date"
-          name="endDate"
-          value={filter.endDate || ''}
-          onChange={(e) => handleDateChange(e.target.value, 'endDate')}
-        />
-
-        <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4" onClick={handleFilter}>
-          Filter Cars
-        </button>
+        <div>
+          <label className="text-sm">Car Condition:</label>
+          <select
+            name="conditionId"
+            value={filter.conditionId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Condition</option>
+            {carConditions.map((condition) => (
+              <option key={condition.id} value={condition.id}>
+                {condition.condition}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        <div>
+          <label className="text-sm">Car Color:</label>
+          <select
+            name="colorId"
+            value={filter.colorId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Color</option>
+            {carColors.map((color) => (
+              <option key={color.id} value={color.id}>
+                {color.color}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        <div>
+          <label className="text-sm">Car Fuel Type:</label>
+          <select
+            name="fuelTypeId"
+            value={filter.fuelTypeId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Fuel Type</option>
+            {carFuelTypes.map((fuelType) => (
+              <option key={fuelType.id} value={fuelType.id}>
+                {fuelType.fuelType}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        <div>
+          <label className="text-sm">Car Seats:</label>
+          <select
+            name="seatsId"
+            value={filter.seatsId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Seats</option>
+            {carSeats.map((seat) => (
+              <option key={seat.id} value={seat.id}>
+                {seat.numberofSeats}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        <div>
+          <label className="text-sm">Car Transmission Type:</label>
+          <select
+            name="transmissionTypeId"
+            value={filter.transmissionTypeId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Transmission Type</option>
+            {carTransmissionTypes.map((transmissionType) => (
+              <option key={transmissionType.id} value={transmissionType.id}>
+                {transmissionType.transmissionType}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        <div>
+          <label className="text-sm">Car Version:</label>
+          <select
+            name="versionId"
+            value={filter.versionId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Version</option>
+            {carVersions.map((version) => (
+              <option key={version.id} value={version.id}>
+                {version.versionType}
+              </option>
+            ))}
+          </select>
+        </div>
+  
+        <div>
+          <label className="text-sm">Start Date:</label>
+          <input
+            type="date"
+            name="startDate"
+            value={filter.startDate || ''}
+            onChange={(e) => handleDateChange(e.target.value, 'startDate')}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          />
+        </div>
+  
+        <div>
+          <label className="text-sm">End Date:</label>
+          <input
+            type="date"
+            name="endDate"
+            value={filter.endDate || ''}
+            onChange={(e) => handleDateChange(e.target.value, 'endDate')}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          />
+        </div>
       </div>
-
-      
+  
+      <button
+        className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+        onClick={handleFilter}
+      >
+        Filter Cars
+      </button>
     </div>
-    
+    <Footer/>
+    </div>
   );
+  
+  
 };
 
 export default CarFilter;
