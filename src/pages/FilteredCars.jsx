@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const FilteredCars = () => {
   const location = useLocation();
-  const filteredCars = location.state?.filteredCars || [];
+  const [filteredCars, setFilteredCars] = useState([]);
 
   const [sortedCars, setSortedCars] = useState([]);
   const [sortOrder, setSortOrder] = useState('asc');
@@ -14,6 +14,11 @@ const FilteredCars = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedCars, setDisplayedCars] = useState([]);
   const carsPerPage = 10;
+
+  useEffect(() => {
+    // Fetch filteredCars once when the component mounts
+    setFilteredCars(location.state?.filteredCars || []);
+  }, [location.state]);
 
   useEffect(() => {
     // Sort the filtered cars initially
@@ -39,10 +44,11 @@ const FilteredCars = () => {
   };
 
   const handleSortChange = (order) => {
-    setSortOrder(order);
-    sortCars(filteredCars, order);
+    if (order !== sortOrder) {
+      setSortOrder(order);
+    }
   };
-
+  
   const handleFilter = () => {
     let filteredCarsCopy = [...filteredCars];
 

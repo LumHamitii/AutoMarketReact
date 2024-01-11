@@ -17,16 +17,17 @@ const CarFilter = () => {
 
 
   const [filter, setFilter] = useState({
-    carBrandId: null,
-    carModelId: null,
-    carConditionId: null,
-    carColorId: null,
-    carFuelTypeId: null,
-    carMileageId: null,
-    carSeatsId: null,
-    carTransmissionTypeId: null,
-    carVersionId: null,
-    endDate: null,
+    brandId: '',
+    modelId: '',
+    conditionId: '',
+    colorId: '',
+    fuelTypeId: '',
+    mileageId: '',
+    seatsId: '',
+    transmissionTypeId: '',
+    versionId: '',
+    startDate : '',
+    endDate: '',
   });
 
 
@@ -81,6 +82,7 @@ const CarFilter = () => {
       [name]: date,
     });
   };
+ 
 
   const handleFilter = async () => {
     try {
@@ -105,7 +107,7 @@ const CarFilter = () => {
 
       <div className="flex flex-col gap-4">
       <label>Car Brand:</label>
-          <select name="carBrandId" value={filter.carBrandId} onChange={handleInputChange}>
+          <select name="brandId" value={filter.brandId} onChange={handleInputChange}>
             <option value={0}>Select Brand</option>
             {carBrands.map((brand) => (
               <option key={brand.id} value={brand.id}>
@@ -114,8 +116,8 @@ const CarFilter = () => {
             ))}
           </select>
           <label>Car Mileage:</label>
-          <select name="carMileageId" value={filter.carMileageId} onChange={handleInputChange}>
-            <option value={0}>Select Brand</option>
+          <select name="mileageId" value={filter.mileageId} onChange={handleInputChange}>
+            <option value={0}>Select Mileage</option>
             {carMileages.map((mileage) => (
               <option key={mileage.id} value={mileage.id}>
                 {mileage.mileage}
@@ -124,7 +126,7 @@ const CarFilter = () => {
           </select>
   
           <label>Car Model:</label>
-          <select name="carModelId" value={filter.carModelId} onChange={handleInputChange}>
+          <select name="modelId" value={filter.modelId} onChange={handleInputChange}>
             <option value={0}>Select Model</option>
             {carModels.map((model) => (
               <option key={model.id} value={model.id}>
@@ -134,7 +136,7 @@ const CarFilter = () => {
           </select>
   
           <label>Car Condition:</label>
-      <select name="carConditionId" value={filter.carConditionId} onChange={handleInputChange}>
+      <select name="conditionId" value={filter.conditionId} onChange={handleInputChange}>
         <option value={0}>Select Condition</option>
         {carConditions.map((condition) => (
           <option key={condition.id} value={condition.id}>
@@ -144,7 +146,7 @@ const CarFilter = () => {
       </select>
 
       <label>Car Color:</label>
-      <select name="carColorId" value={filter.carColorId} onChange={handleInputChange}>
+      <select name="colorId" value={filter.colorId} onChange={handleInputChange}>
         <option value={0}>Select Color</option>
         {carColors.map((color) => (
           <option key={color.id} value={color.id}>
@@ -154,7 +156,7 @@ const CarFilter = () => {
       </select>
 
       <label>Car Fuel Type:</label>
-      <select name="carFuelTypeId" value={filter.carFuelTypeId} onChange={handleInputChange}>
+      <select name="fuelTypeId" value={filter.fuelTypeId} onChange={handleInputChange}>
         <option value={0}>Select Fuel Type</option>
         {carFuelTypes.map((fuelType) => (
           <option key={fuelType.id} value={fuelType.id}>
@@ -164,7 +166,7 @@ const CarFilter = () => {
       </select>
 
       <label>Car Seats:</label>
-      <select name="carSeatsId" value={filter.carSeatsId} onChange={handleInputChange}>
+      <select name="seatsId" value={filter.seatsId} onChange={handleInputChange}>
         <option value={0}>Select Seats</option>
         {carSeats.map((seat) => (
           <option key={seat.id} value={seat.id}>
@@ -174,7 +176,7 @@ const CarFilter = () => {
       </select>
 
       <label>Car Transmission Type:</label>
-      <select name="carTransmissionTypeId" value={filter.carTransmissionTypeId} onChange={handleInputChange}>
+      <select name="transmissionTypeId" value={filter.transmissionTypeId} onChange={handleInputChange}>
         <option value={0}>Select Transmission Type</option>
         {carTransmissionTypes.map((transmissionType) => (
           <option key={transmissionType.id} value={transmissionType.id}>
@@ -184,7 +186,7 @@ const CarFilter = () => {
       </select>
 
       <label>Car Version:</label>
-      <select name="carVersionId" value={filter.carVersionId} onChange={handleInputChange}>
+      <select name="versionId" value={filter.versionId} onChange={handleInputChange}>
         <option value={0}>Select Version</option>
         {carVersions.map((version) => (
           <option key={version.id} value={version.id}>
