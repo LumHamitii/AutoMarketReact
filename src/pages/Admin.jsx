@@ -98,8 +98,9 @@ const Admin = () => {
             )}
           </div>
         </div>
-
-        <h2 className="text-3xl font-semibold mb-6">Welcome to the Admin Panel</h2>
+       
+        <h2 className="text-3xl mb-20 font-semibold ">Welcome to the Admin Panel</h2>
+        
         <div>
     
           {showMotorcycles && <MotorcycleList />}

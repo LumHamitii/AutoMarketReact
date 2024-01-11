@@ -1,4 +1,3 @@
-// CarShow.js
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -133,7 +132,7 @@ const CarShow = () => {
                 <div className="text-xs sm:text-base md:text-lg mb-2">Fuel Type: {car.carFuelType?.fuelType}</div>
                 <div className="text-xs sm:text-base md:text-lg mb-2">Mileage: {car.carMileage?.mileage}</div>
                 <div className="text-xs sm:text-base md:text-lg mb-2">Location: {car.location}</div>
-                <div className="text-base md:text-lg font-bold">${car.price}</div>
+                <div className="text-base md:text-lg font-bold">{car.price}€</div>
               </div>
             </Link>
           ))}
