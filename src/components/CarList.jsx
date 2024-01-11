@@ -39,7 +39,7 @@ const CarList = () => {
                 <div>
                   <strong>Brand:</strong> {car.carBrand ? car.carBrand.brandName : 'N/A'}<br/>
                   <strong>Description:</strong> {car.description}<br />
-                  <strong>Price:</strong> {car.price}<br />
+                  <strong>Price:</strong>{car.price}€<br />
                 </div>
                 <button 
                   onClick={() => handleDelete(car.id)}
