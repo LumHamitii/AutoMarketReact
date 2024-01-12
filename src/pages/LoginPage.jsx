@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -23,15 +24,18 @@ const LoginPage = () => {
         },
         body: JSON.stringify(loginData),
       });
-
+  
       if (!response.ok) {
         const errorResponse = await response.json().catch(() => ({}));
         const errorMessage = errorResponse.message || 'Authentication failed';
         throw new Error(`Authentication failed: ${errorMessage}`);
       }
-
+  
+      const loginResponse = await response.json(); // Parse the response JSON
+      const { userId } = loginResponse; // Extract userId from the response
+  
       setError(null);
-      login();
+      login({ userId }); // Pass the userId to the login function
       navigate('/admin');
     } catch (error) {
       console.error('Login failed:', error);

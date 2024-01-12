@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+// Admin.jsx
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../AuthContext';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import MotorcycleList from '../components/MotorcycleList';
 import CarList from '../components/CarList';
+
 const Admin = () => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, userData } = useAuth();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [showMotorcycles, setShowMotorcycles] = useState(false);
   const [showCars, setShowCars] = useState(false);
-  
+
+  useEffect(() => {
+    // Log user data to the console when userData changes
+    console.log('User Data:', userData);
+  }, [userData]);
+
+
   const handleMotorcycleClick = () => {
     setShowMotorcycles(true);
     setShowCars(false);
@@ -18,6 +26,7 @@ const Admin = () => {
     setShowCars(true);
     setShowMotorcycles(false);
   };
+
   const handleLogout = () => {
     logout();
   };
@@ -38,17 +47,15 @@ const Admin = () => {
           <h2 className="text-2xl font-semibold">Admin Panel</h2>
         </div>
         <ul>
-          <li className='"p-4 cursor-pointer hover:bg-gray-700' onClick={handleCarClick}>Cars</li>
-         
+          <li className='"p-4 cursor-pointer hover:bg-gray-700' onClick={handleCarClick}>
+            Cars
+          </li>
+
           <li className="p-4 cursor-pointer hover:bg-gray-700" onClick={handleMotorcycleClick}>
             Motorcycles
           </li>
-          <li className="p-4 cursor-pointer hover:bg-gray-700">
-            Trucks
-          </li>
-          <li className="p-4 cursor-pointer hover:bg-gray-700">
-            Rental
-          </li>
+          <li className="p-4 cursor-pointer hover:bg-gray-700">Trucks</li>
+          <li className="p-4 cursor-pointer hover:bg-gray-700">Rental</li>
         </ul>
       </div>
 
@@ -98,16 +105,13 @@ const Admin = () => {
             )}
           </div>
         </div>
-       
-        <h2 className="text-3xl mb-20 font-semibold ">Welcome to the Admin Panel</h2>
-        
+
+        <h2 className="text-3xl mb-20 font-semibold">Welcome to the Admin Panel</h2>
+
         <div>
-    
           {showMotorcycles && <MotorcycleList />}
           {showCars && <CarList />}
         </div>
-       
-
       </div>
     </div>
   );
