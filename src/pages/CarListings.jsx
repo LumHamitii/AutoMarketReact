@@ -5,7 +5,7 @@ import { useAuth } from '../AuthContext';
 import { Navigate } from 'react-router-dom';
 
 const CarListings = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated , userData} = useAuth();
   const [newCar, setNewCar] = useState({
     description: '',
     price: 0,
@@ -23,6 +23,7 @@ const CarListings = () => {
     carTransmissionTypeId: 0,
     carVersionId: 0,
     files: [],
+    userId: ''
   }
   );
  
@@ -35,7 +36,10 @@ const CarListings = () => {
   const [carSeats, setCarSeats] = useState([]);
   const [carTransmissionTypes, setCarTransmissionTypes] = useState([]);
   const [carVersions, setCarVersions] = useState([]);
-
+  useEffect(() => {
+    // Log user data to the console when userData changes
+    console.log('User Data:', userData);
+  }, [userData]);
   useEffect(() => {
     const fetchDropdownOptions = async () => {
       try {
@@ -107,7 +111,8 @@ const CarListings = () => {
       formData.append('carTransmissionTypeId', newCar.carTransmissionTypeId);
       formData.append('carVersionId', newCar.carVersionId);
   
-      
+      formData.append('userId', userData.userId);
+
       for (let i = 0; i < newCar.files.length; i++) {
         formData.append('Files', newCar.files[i]);
       }
@@ -245,6 +250,7 @@ const CarListings = () => {
             {version.versionType}
           </option>
         ))}
+        <input type="hidden" name="userId" value={newCar.userId} />
       </select>
          <label>Photos:</label>
           <input type="file" name="photos" multiple onChange={handleFileChange} />

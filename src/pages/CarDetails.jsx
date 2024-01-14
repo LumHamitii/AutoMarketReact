@@ -62,6 +62,12 @@ const CarDetails = () => {
           <p className="text-gray-700 mb-2">Location: {car.location}</p>
           <p className="text-gray-700 mb-2">First Registration: {car.firstRegistration}</p>
           <p className="text-gray-800 mt-4">{car.description}</p>
+          {car.user && (
+            <div className="mt-4">
+              <p className="text-gray-700">Listed by: {car.user.email}</p>
+              <p className="text-gray-700">Phone Number: {car.user.phoneNumber}</p>
+            </div>
+          )}
           <h3 className="text-2xl font-bold mt-6 text-green-600">{car.price}€</h3>
         </div>
       </div>
