@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
 
 const MotorcycleListings = () => {
   
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated , userData} = useAuth();
   const [isListingCreated, setIsListingCreated] = useState(false);
   const [newMotorcycle, setNewMotorcycle] = useState({
     description: '',
@@ -33,6 +33,9 @@ const MotorcycleListings = () => {
   const [motorcycleTransmissions, setMotorcycleTransmissions] = useState([]);
   const [motorcycleTypes, setMotorcycleTypes] = useState([]);
   const [motorcycleYears, setMotorcycleYears] = useState([]);
+  useEffect(() => {
+    console.log('User Data:', userData);
+  }, [userData]);
 
   useEffect(() => {
     const fetchDropdownOptions = async () => {
@@ -101,6 +104,8 @@ const MotorcycleListings = () => {
       formData.append('motorcycleTypeId', newMotorcycle.motorcycleTypeId);
       formData.append('motorcycleYearId', newMotorcycle.motorcycleYearId);
       
+      formData.append('userId', userData.userId);
+
       for (let i = 0; i < newMotorcycle.files.length; i++) {
         formData.append('Files', newMotorcycle.files[i]);
       }
@@ -111,6 +116,7 @@ const MotorcycleListings = () => {
       });
       console.log('Motorcycle saved successfully!');
       setIsListingCreated(true); 
+      window.location.href = '/admin';
 
       
     }catch (error) {
@@ -167,8 +173,7 @@ const MotorcycleListings = () => {
             ))}
           </select>
   
-          {/* Add similar dropdowns for other motorcycle properties */}
-          {/* Motorcycle Model Dropdown */}
+    
           <label>Motorcycle Model:</label>
           <select name="motorcycleModelId" value={newMotorcycle.motorcycleModelId} onChange={handleInputChange}>
             <option value={0}>Select Model</option>
@@ -179,7 +184,7 @@ const MotorcycleListings = () => {
             ))}
           </select>
   
-          {/* Motorcycle Condition Dropdown */}
+   
           <label>Motorcycle Condition:</label>
           <select name="motorcycleConditionId" value={newMotorcycle.motorcycleConditionId} onChange={handleInputChange}>
             <option value={0}>Select Condition</option>
@@ -190,7 +195,7 @@ const MotorcycleListings = () => {
             ))}
           </select>
   
-          {/* Motorcycle Color Dropdown */}
+       
           <label>Motorcycle Color:</label>
           <select name="motorcycleColorId" value={newMotorcycle.motorcycleColorId} onChange={handleInputChange}>
             <option value={0}>Select Color</option>
@@ -200,7 +205,7 @@ const MotorcycleListings = () => {
               </option>
             ))}
           </select>
-  {/* Motorcycle Type Dropdown */}
+
 <label>Motorcycle Type:</label>
 <select name="motorcycleTypeId" value={newMotorcycle.motorcycleTypeId} onChange={handleInputChange}>
   <option value={0}>Select Type</option>
@@ -210,7 +215,7 @@ const MotorcycleListings = () => {
     </option>
   ))}
 </select>
-{/* Motorcycle Transmission Dropdown */}
+
 <label>Motorcycle Transmission:</label>
 <select name="motorcycleTransmissionId" value={newMotorcycle.motorcycleTransmissionId} onChange={handleInputChange}>
   <option value={0}>Select Transmission Type</option>
@@ -221,7 +226,7 @@ const MotorcycleListings = () => {
   ))}
 </select>
 
-     {/* Motorcycle Fuel Type Dropdown */}
+
 <label>Motorcycle Fuel Type:</label>
 <select name="motorcycleFuelTypeId" value={newMotorcycle.motorcycleFuelTypeId} onChange={handleInputChange}>
   <option value={0}>Select Fuel Type</option>
@@ -232,7 +237,6 @@ const MotorcycleListings = () => {
   ))}
 </select>
 
-{/* Motorcycle Year Dropdown */}
 <label>Motorcycle Year:</label>
 <select name="motorcycleYearId" value={newMotorcycle.motorcycleYearId} onChange={handleInputChange}>
   <option value={0}>Select Year</option>
@@ -241,6 +245,7 @@ const MotorcycleListings = () => {
       {yearOfProduction.yearOfProduction}
     </option>
   ))}
+   <input type="hidden" name="userId" value={newMotorcycle.userId} />
 </select>
           <label>Photos:</label>
           <input type="file" name="motorcyclePhotos" multiple onChange={handleFileChange} />

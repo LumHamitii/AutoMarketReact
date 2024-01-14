@@ -19,6 +19,7 @@ import BlogDetails from './pages/BlogDetails';
 import CreateBlog from './pages/CreateBlog';
 import FilteredCars from './pages/FilteredCars';
 import MotorcycleShow from './pages/MotorcycleShow';
+import MotorcycleDetails from './pages/MotorcycleDetails';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppRouter = () => {
@@ -39,7 +40,7 @@ const AppRouter = () => {
       <Route path="/blog/:id" element={<BlogDetails />} />
       <Route path="/create-blog" element={<CreateBlog />} />
       <Route path="/motorcycles" element={<MotorcycleShow />} />
-
+      <Route path="/motorcycle/:id" element={<MotorcycleDetails />} />
       <Route path="*" element={<div>Page not found</div>} />
     </Routes>
   );
