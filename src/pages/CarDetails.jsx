@@ -12,7 +12,7 @@ const CarDetails = () => {
       try {
         const response = await axios.get(`https://localhost:7136/api/ApiCar/${id}`);
         setCar(response.data);
-        setSelectedPhoto(response.data.motorcyclePhotos[0]);
+        setSelectedPhoto(response.data.photos[0]);
       } catch (error) {
         console.error('Error fetching car details:', error);
       }

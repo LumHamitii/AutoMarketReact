@@ -82,6 +82,9 @@ const LoginPage = () => {
           >
             Login
           </button>
+          <Link to="/register">
+          <p className='text-blue-400'>Don't have an account? Sign up here.</p>
+          </Link> <br />
           <Link to="/">
           <p>Go back home</p>
           </Link>
