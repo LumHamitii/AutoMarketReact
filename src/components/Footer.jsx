@@ -11,7 +11,7 @@ const Footer = () => {
             className="w-24 md:w-32 lg:w-34 xl:w-38 2xl:w-50 h-auto mb-4"
             alt="AutoMarket Logo"
           />
-          <p className="text-sm">&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+          <p className="text-sm">&copy;{new Date().getFullYear()} AutoMarket. All rights reserved.</p>
         </div>
 
         <div className="flex flex-col items-center mt-4 md:mt-0">
