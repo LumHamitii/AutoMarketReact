@@ -22,6 +22,7 @@ import MotorcycleShow from './pages/MotorcycleShow';
 import MotorcycleDetails from './pages/MotorcycleDetails';
 import Brands from './pages/Brands';
 import MercedesModels from './pages/MercedesModels';
+import SellCar from './pages/SellCar';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppRouter = () => {
@@ -31,7 +32,7 @@ const AppRouter = () => {
       <Route path="/car-valuation" element={<CarValuation />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/cars" element={<CarListings />} />
+      <Route path="/cars-listing" element={<CarListings />} />
       <Route path="/used-&-new-cars" element={<CarFilter />} />
       <Route path="/filtered-cars" element={<FilteredCars />} />
       <Route path="/all-used-&-new-cars" element={<CarShow />} />
@@ -46,7 +47,7 @@ const AppRouter = () => {
       <Route path="/brands-&-models" element={<Brands />} />
       <Route path="/motorcycle/:id" element={<MotorcycleDetails />} />
       <Route path="/mercedes" element={<MercedesModels />} />
-
+      <Route path="cars-&-motorcycles" element={<SellCar />} />
       <Route path="*" element={<div>Page not found</div>} />
     </Routes>
   );

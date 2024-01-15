@@ -85,49 +85,51 @@ const CarValuation = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="flex-grow mt-24"> {/* Add mt-16 (margin-top: 16) to move content lower */}
-        <div className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
-          <h2 className="text-3xl font-bold mb-4 text-center text-blue-500">Car Valuation</h2>
+      <div className="flex-grow mt-24">
+        <div className="max-w-md mx-auto p-6 bg-gradient-to-b from-blue-500 to-blue-800 rounded-md shadow-lg text-white">
+          <h2 className="text-3xl font-bold mb-4 text-center animate__animated animate__fadeIn animate__delay-1s">
+             Car Valuation
+          </h2>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-600">Car Model:</label>
+            <label className="block text-sm font-medium text-gray-200">Car Model:</label>
             <input
               type="text"
               value={searchTerm}
               onChange={handleSearchTermChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+              className="mt-1 p-2 border border-gray-300 rounded-md text-black w-full focus:outline-none focus:border-blue-300 transition-all duration-300"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-600">Mileage:</label>
+            <label className="block text-sm font-medium text-gray-200">Mileage (in km):</label>
             <input
               type="number"
               value={mileage}
               onChange={handleMileageChange}
-              className="mt-1 p-2 border border-gray-300 rounded-md w-full focus:outline-none focus:border-blue-500"
+              className="mt-1 p-2 border border-gray-300 text-black rounded-md w-full focus:outline-none focus:border-blue-300 transition-all duration-300"
             />
           </div>
           <button
             type="button"
             onClick={handleEvaluateClick}
-            className={`bg-blue-500 text-white p-2 rounded-md w-full ${
-              isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
-            }`}
+            className={`bg-yellow-400 text-gray-800 p-2 rounded-md w-full ${
+              isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-yellow-500 transform hover:scale-105 transition-all duration-300'
+            } animate__animated animate__fadeIn animate__delay-2s`}
             disabled={isLoading}
           >
             {isLoading ? (
               <div className="flex items-center justify-center">
-                <TailSpin color="#fff" size={20} />
+                <TailSpin color="#333" size={20} />
                 <span className="ml-2">Loading...</span>
               </div>
             ) : (
-              'Load Estimate'
+              'Get Valuation'
             )}
           </button>
   
           {evaluatedPrice !== null && !isLoading && (
-            <div className="mt-4">
-              <h3 className="text-lg font-semibold text-center">Evaluated Price</h3>
-              <p className="text-gray-800 text-center">
+            <div className="mt-4 animate__animated animate__fadeIn animate__delay-3s">
+              <h3 className="text-lg font-semibold text-center">Estimated Value</h3>
+              <p className="text-2xl font-bold text-center">
                 {new Intl.NumberFormat('en-US', {
                   style: 'currency',
                   currency: 'EUR',
