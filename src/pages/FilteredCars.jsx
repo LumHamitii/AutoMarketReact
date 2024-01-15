@@ -16,9 +16,9 @@ const FilteredCars = () => {
   const carsPerPage = 10;
 
   useEffect(() => {
-    // Fetch filteredCars once when the component mounts
-    setFilteredCars(location.state?.filteredCars || []);
-  }, [location.state]);
+    const newFilteredCars = location.state?.filteredCars || [];
+    setFilteredCars(newFilteredCars);
+    }, [location.state]);
 
   useEffect(() => {
     // Sort the filtered cars initially
@@ -59,7 +59,6 @@ const FilteredCars = () => {
     if (maxPrice !== '') {
       filteredCarsCopy = filteredCarsCopy.filter((car) => parseFloat(car.price) <= parseFloat(maxPrice));
     }
-
     sortCars(filteredCarsCopy, sortOrder);
   };
 

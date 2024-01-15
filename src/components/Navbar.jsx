@@ -51,21 +51,40 @@ const Navbar = () => {
           <div className='ml-4'>
             <ul className={`hidden md:flex font-semibold ${darkMode ? 'text-white' : 'text-black'}`}>
               <li className='relative'>
-                <Link to="#" onClick={() => toggleDropdown('search')} className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Search {openDropdown === 'search' ? <ChevronUpIcon className="w-4 h-4 ml-1" /> : <ChevronDownIcon className="w-4 h-4 ml-1" />}
-                </Link>
+              <Link
+              to="#"
+              onClick={(e) => {
+              e.preventDefault();
+              toggleDropdown('search');
+              }}
+             className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
+            Search {openDropdown === 'search' ? <ChevronUpIcon className="w-4 h-4 ml-1" /> : <ChevronDownIcon className="w-4 h-4 ml-1" />}
+            </Link>
+
                 {renderDropdown('search')}
               </li>
               <li className='relative'>
-                <Link to="#" onClick={() => toggleDropdown('sell')} className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Sell {openDropdown === 'sell' ? <ChevronUpIcon className="w-4 h-4 ml-1" /> : <ChevronDownIcon className="w-4 h-4 ml-1" />}
-                </Link>
+              <Link
+              to="#"
+              onClick={(e) => {
+              e.preventDefault();
+              toggleDropdown('sell');
+              }}
+             className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
+            Sell {openDropdown === 'sell' ? <ChevronUpIcon className="w-4 h-4 ml-1" /> : <ChevronDownIcon className="w-4 h-4 ml-1" />}
+            </Link>
                 {renderDropdown('sell')}
               </li>
               <li className='relative'>
-                <Link to="#" onClick={() => toggleDropdown('inform')} className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
-                  Inform {openDropdown === 'inform' ? <ChevronUpIcon className="w-4 h-4 ml-1" /> : <ChevronDownIcon className="w-4 h-4 ml-1" />}
-                </Link>
+              <Link
+              to="#"
+              onClick={(e) => {
+              e.preventDefault();
+              toggleDropdown('inform');
+              }}
+             className={`flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
+            Inform {openDropdown === 'inform' ? <ChevronUpIcon className="w-4 h-4 ml-1" /> : <ChevronDownIcon className="w-4 h-4 ml-1" />}
+            </Link>
                 {renderDropdown('inform')}
               </li>
               <li><Link to="/login"><UserIcon className={`w-5 ${darkMode ? 'text-white' : 'text-black'}`}/></Link></li>
