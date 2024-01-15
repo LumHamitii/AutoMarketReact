@@ -4,11 +4,13 @@ import { useAuth } from '../AuthContext';
 import { Navigate } from 'react-router-dom';
 import MotorcycleList from '../components/MotorcycleList';
 import CarList from '../components/CarList';
+import AdminData from '../components/AdminData';
 
 const Admin = () => {
   const { isAuthenticated, logout, userData } = useAuth();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [showMotorcycles, setShowMotorcycles] = useState(false);
+  const [showAdminData, setShowAdminData] = useState(true);
   const [showCars, setShowCars] = useState(false);
 
   useEffect(() => {
@@ -20,11 +22,13 @@ const Admin = () => {
   const handleMotorcycleClick = () => {
     setShowMotorcycles(true);
     setShowCars(false);
+    setShowAdminData(false);
   };
 
   const handleCarClick = () => {
     setShowCars(true);
     setShowMotorcycles(false);
+    setShowAdminData(false);
   };
 
   const handleLogout = () => {
@@ -109,6 +113,7 @@ const Admin = () => {
         <h2 className="text-3xl mb-20 font-semibold">Welcome to the Admin Panel</h2>
 
         <div>
+          {showAdminData && <AdminData />}
           {showMotorcycles && <MotorcycleList />}
           {showCars && <CarList />}
         </div>
