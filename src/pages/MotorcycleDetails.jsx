@@ -57,8 +57,8 @@ const MotorcycleDetails = () => {
                   <h1 className="text-4xl font-bold mb-4 text-blue-700">{motorcycle.motorcycleBrand?.brandName} {motorcycle.motorcycleModel?.modelName}</h1>
                   <p className="text-gray-700 mb-2">Condition: {motorcycle.motorcycleCondition?.condition}</p>
                   <p className="text-gray-700 mb-2">Color: {motorcycle.motorcycleColor?.color}</p>
-                  <p className="text-gray-700 mb-2">Fuel Type: {motorcycle.motorcycleFuelType?.fuelType}</p>
-                  <p className="text-gray-700 mb-2">Transmission Type: {motorcycle.motorcycleTransmissionType?.transmissionType}</p>
+                  <p className="text-gray-700 mb-2">Fuel Type: {motorcycle.motorcycleFuelType?.fuel}</p>
+                  <p className="text-gray-700 mb-2">Transmission Type: {motorcycle.motorcycleTransmission?.transmission}</p>
                   <p className="text-gray-700 mb-2">Mileage: {motorcycle.motorcycleMileage?.mileage}</p>
                   <p className="text-gray-700 mb-2">Location: {motorcycle.location}</p>
                   <p className="text-gray-700 mb-2">First Registration: {motorcycle.firstRegistration}</p>

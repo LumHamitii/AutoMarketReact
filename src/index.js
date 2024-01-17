@@ -23,6 +23,8 @@ import MotorcycleDetails from './pages/MotorcycleDetails';
 import Brands from './pages/Brands';
 import MercedesModels from './pages/MercedesModels';
 import SellCar from './pages/SellCar';
+import MotorcycleFilter from './pages/MotorcycleFilter';
+import FilteredMotorcycles from './pages/FilteredMotorcycles';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppRouter = () => {
@@ -34,7 +36,9 @@ const AppRouter = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/cars-listing" element={<CarListings />} />
       <Route path="/used-&-new-cars" element={<CarFilter />} />
+      <Route path="/motorcycles" element={<MotorcycleFilter />} />
       <Route path="/filtered-cars" element={<FilteredCars />} />
+      <Route path="/filtered-motorcycles" element={<FilteredMotorcycles />} />
       <Route path="/all-used-&-new-cars" element={<CarShow />} />
       <Route path="/car/:id" element={<CarDetails />} />
       <Route path="/register" element={<RegisterPage />} />
@@ -43,7 +47,7 @@ const AppRouter = () => {
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:id" element={<BlogDetails />} />
       <Route path="/create-blog" element={<CreateBlog />} />
-      <Route path="/motorcycles" element={<MotorcycleShow />} />
+      <Route path="/all-motorcycles" element={<MotorcycleShow />} />
       <Route path="/brands-&-models" element={<Brands />} />
       <Route path="/motorcycle/:id" element={<MotorcycleDetails />} />
       <Route path="/mercedes" element={<MercedesModels />} />
