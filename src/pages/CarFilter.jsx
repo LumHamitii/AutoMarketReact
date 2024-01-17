@@ -291,7 +291,9 @@ const CarFilter = () => {
         onClick={handleFilter}
       >
         Filter Cars
-      </button>
+      </button> <br />
+      <button onClick={() => navigate('/all-cars')} className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Show All Listings</button>
+
     </div>
     <Footer/>
     </div>

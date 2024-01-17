@@ -39,7 +39,7 @@ const AppRouter = () => {
       <Route path="/motorcycles" element={<MotorcycleFilter />} />
       <Route path="/filtered-cars" element={<FilteredCars />} />
       <Route path="/filtered-motorcycles" element={<FilteredMotorcycles />} />
-      <Route path="/all-used-&-new-cars" element={<CarShow />} />
+      <Route path="/all-cars" element={<CarShow />} />
       <Route path="/car/:id" element={<CarDetails />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin" element={<Admin />} />
