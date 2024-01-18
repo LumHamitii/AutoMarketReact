@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
   return (
@@ -16,7 +18,7 @@ const Footer = () => {
 
         <div className="flex flex-col items-center mt-4 md:mt-0">
           <p className="font-bold mb-1">Quick Links</p>
-         <Link to="/all-cars"> <a href="#" className="hover:text-gray-300">Cars</a></Link>
+          <Link to="/all-cars" className="hover:text-gray-300">Cars</Link>
           <a href="all-motorcycles" className="hover:text-gray-300">Motorcycles</a>
           <a href="all-trucks" className="hover:text-gray-300">Trucks</a>
         </div>
@@ -25,13 +27,13 @@ const Footer = () => {
           <p className="font-bold mb-2">Connect with Us</p>
           <div className="flex space-x-4">
             <a href="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-facebook"></i>
+              <FontAwesomeIcon icon={faFacebook} />
             </a>
             <a href="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-twitter"></i>
+              <FontAwesomeIcon icon={faTwitter} />
             </a>
             <a href="#" className="text-gray-400 hover:text-white">
-              <i className="fab fa-instagram"></i>
+              <FontAwesomeIcon icon={faInstagram} />
             </a>
           </div>
         </div>
