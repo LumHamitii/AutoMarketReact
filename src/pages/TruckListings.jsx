@@ -114,8 +114,6 @@ const TruckListings = () => {
 
       console.log('Truck saved successfully!');
       setIsListingCreated(true);
-      // Redirect to the desired page after successful listing creation
-      // For example, redirect to '/admin'
       window.location.href = '/admin';
     } catch (error) {
       if (error.response && error.response.status === 400 && error.response.data.errors) {

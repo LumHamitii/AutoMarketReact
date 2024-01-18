@@ -3,7 +3,6 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Link } from 'react-router-dom';
-// Import the Open Sans font from Google Fonts
 import 'fontsource-roboto';
 
 const App = () => {
@@ -12,9 +11,10 @@ const App = () => {
   useEffect(() => {
     const fetchLatestCars = async () => {
       try {
-        const response = await axios.get('https://localhost:7136/api/ApiCar');  // Adjust the API endpoint
-        const sortedLatestCars = response.data.slice(0, 3);  // Take the first 3 cars as the latest ones
-        setLatestCars(sortedLatestCars);
+        const response = await axios.get('https://localhost:7136/api/ApiCar');
+        const totalCars = response.data.length;
+        const lastThreeCars = response.data.slice(totalCars - 3, totalCars);
+        setLatestCars(lastThreeCars);
       } catch (error) {
         console.error('Error fetching latest cars:', error);
       }

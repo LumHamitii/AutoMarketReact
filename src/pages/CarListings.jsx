@@ -124,7 +124,7 @@ const CarListings = () => {
       });
   
       console.log('Car saved successfully!');
-      // window.location.href = '/used-&-new-cars';
+      window.location.href = '/admin';
     } catch (error) {
       if (error.response && error.response.status === 400 && error.response.data.errors) {
         console.log('Validation errors:', error.response.data.errors);
