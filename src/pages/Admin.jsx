@@ -5,6 +5,7 @@ import { Navigate } from 'react-router-dom';
 import MotorcycleList from '../components/MotorcycleList';
 import CarList from '../components/CarList';
 import AdminData from '../components/AdminData';
+import TruckList from '../components/TruckList';
 
 const Admin = () => {
   const { isAuthenticated, logout, userData } = useAuth();
@@ -12,7 +13,7 @@ const Admin = () => {
   const [showMotorcycles, setShowMotorcycles] = useState(false);
   const [showAdminData, setShowAdminData] = useState(true);
   const [showCars, setShowCars] = useState(false);
-
+  const [showTrucks, setShowTrucks] = useState(false);
   useEffect(() => {
     // Log user data to the console when userData changes
     console.log('User Data:', userData);
@@ -22,6 +23,7 @@ const Admin = () => {
   const handleMotorcycleClick = () => {
     setShowMotorcycles(true);
     setShowCars(false);
+    setShowTrucks(false);
     setShowAdminData(false);
   };
 
@@ -29,6 +31,13 @@ const Admin = () => {
     setShowCars(true);
     setShowMotorcycles(false);
     setShowAdminData(false);
+    setShowTrucks(false);
+  };
+  const handleTruckClick = () => {
+    setShowCars(false);
+    setShowMotorcycles(false);
+    setShowAdminData(false);
+    setShowTrucks(true);
   };
 
   const handleLogout = () => {
@@ -58,7 +67,9 @@ const Admin = () => {
           <li className="p-4 cursor-pointer hover:bg-gray-700" onClick={handleMotorcycleClick}>
             Motorcycles
           </li>
-          <li className="p-4 cursor-pointer hover:bg-gray-700">Trucks</li>
+          <li className="p-4 cursor-pointer hover:bg-gray-700" onClick={handleTruckClick}>
+            Trucks
+          </li>
           <li className="p-4 cursor-pointer hover:bg-gray-700">Rental</li>
         </ul>
       </div>
@@ -116,6 +127,7 @@ const Admin = () => {
           {showAdminData && <AdminData />}
           {showMotorcycles && <MotorcycleList />}
           {showCars && <CarList />}
+          {showTrucks && <TruckList />}
         </div>
       </div>
     </div>

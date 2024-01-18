@@ -4,17 +4,18 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-const MotorcycleFilter = () => {
+
+const TruckFilter = () => {
   const navigate = useNavigate();
-  const [motorcycleBrands, setMotorcycleBrands] = useState([]);
-  const [motorcycleModels, setMotorcycleModels] = useState([]);
-  const [motorcycleConditions, setMotorcycleConditions] = useState([]);
-  const [motorcycleColors, setMotorcycleColors] = useState([]);
-  const [motorcycleFuelTypes, setMotorcycleFuelTypes] = useState([]);
-  const [motorcycleMileages, setMotorcycleMileages] = useState([]);
-  const [motorcycleTransmissions, setMotorcycleTransmissions] = useState([]);
-  const [motorcycleTypes, setMotorcycleTypes] = useState([]);
-  const [filteredMotorcycles, setFilteredMotorcycles] = useState([]);
+  const [truckBrands, setTruckBrands] = useState([]);
+  const [truckModels, setTruckModels] = useState([]);
+  const [truckConditions, setTruckConditions] = useState([]);
+  const [truckColors, setTruckColors] = useState([]);
+  const [truckFuelTypes, setTruckFuelTypes] = useState([]);
+  const [truckMileages, setTruckMileages] = useState([]);
+  const [truckTransmissions, setTruckTransmissions] = useState([]);
+  const [truckVersions, setTruckVersions] = useState([]);
+  const [filteredTrucks, setFilteredTrucks] = useState([]);
 
   const [filter, setFilter] = useState({
     brandId: '',
@@ -24,37 +25,36 @@ const MotorcycleFilter = () => {
     fuelTypeId: '',
     mileageId: '',
     transmissionTypeId: '',
-    typeId: '',
+    versionId: '',
     startDate: '',
     endDate: '',
   });
-
   useEffect(() => {
     const fetchDropdownOptions = async () => {
       try {
-        const brandsResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleBrands');
-        setMotorcycleBrands(brandsResponse.data);
+        const brandsResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckBrands');
+        setTruckBrands(brandsResponse.data);
 
-        const modelsResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleModels');
-        setMotorcycleModels(modelsResponse.data);
+        const modelsResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckModels');
+        setTruckModels(modelsResponse.data);
 
-        const conditionsResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleConditions');
-        setMotorcycleConditions(conditionsResponse.data);
+        const conditionsResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckConditions');
+        setTruckConditions(conditionsResponse.data);
 
-        const colorsResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleColors');
-        setMotorcycleColors(colorsResponse.data);
+        const colorsResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckColors');
+        setTruckColors(colorsResponse.data);
 
-        const fuelTypesResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleFuelTypes');
-        setMotorcycleFuelTypes(fuelTypesResponse.data);
+        const fuelTypesResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckFuelTypes');
+        setTruckFuelTypes(fuelTypesResponse.data);
 
-        const mileagesResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleMileages');
-        setMotorcycleMileages(mileagesResponse.data);
+        const mileagesResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckMileages');
+        setTruckMileages(mileagesResponse.data);
 
-        const transmissionsResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleTransmissions');
-        setMotorcycleTransmissions(transmissionsResponse.data);
+        const transmissionsResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckTransmissionTypes');
+        setTruckTransmissions(transmissionsResponse.data);
 
-        const typesResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleTypes');
-        setMotorcycleTypes(typesResponse.data);
+        const versionsResponse = await axios.get('https://localhost:7136/api/ApiTruck/GetTruckVersions');
+        setTruckVersions(versionsResponse.data);
 
       } catch (error) {
         console.error('Error fetching dropdown options:', error);
@@ -81,15 +81,15 @@ const MotorcycleFilter = () => {
   const handleFilter = async () => {
     try {
       console.log('Filter:', filter);
-      const response = await axios.get('https://localhost:7136/api/ApiMotorcycle/filter', {
+      const response = await axios.get('https://localhost:7136/api/ApiTruck/filter', {
         params: filter,
       });
       console.log('API Response:', response.data);
-      setFilteredMotorcycles(response.data);
-      navigate('/filtered-motorcycles', { state: { filteredMotorcycles: response.data } });
+      setFilteredTrucks(response.data);
+      navigate('/filtered-trucks', { state: { filteredTrucks: response.data } });
 
     } catch (error) {
-      console.error('Error filtering motorcycles:', error);
+      console.error('Error filtering trucks:', error);
     }
   };
 
@@ -97,12 +97,12 @@ const MotorcycleFilter = () => {
     <div className='flex flex-col min-h-screen'>
       <Navbar />
       <div className="container mx-auto mt-8 flex-grow">
-        <h1 className="text-3xl mb-4">Filter Motorcycles</h1>
+        <h1 className="text-3xl mb-4">Filter Trucks</h1>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {/* Motorcycle Brand Dropdown */}
+          {/* Truck Brand Dropdown */}
           <div>
-            <label className="text-sm">Motorcycle Brand:</label>
+            <label className="text-sm">Truck Brand:</label>
             <select
               name="brandId"
               value={filter.brandId}
@@ -110,7 +110,7 @@ const MotorcycleFilter = () => {
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
             >
               <option value={0}>Select Brand</option>
-              {motorcycleBrands.map((brand) => (
+              {truckBrands.map((brand) => (
                 <option key={brand.id} value={brand.id}>
                   {brand.brandName}
                 </option>
@@ -118,9 +118,9 @@ const MotorcycleFilter = () => {
             </select>
           </div>
 
-          {/* Motorcycle Model Dropdown */}
+          {/* Truck Model Dropdown */}
           <div>
-            <label className="text-sm">Motorcycle Model:</label>
+            <label className="text-sm">Truck Model:</label>
             <select
               name="modelId"
               value={filter.modelId}
@@ -128,7 +128,7 @@ const MotorcycleFilter = () => {
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
             >
               <option value={0}>Select Model</option>
-              {motorcycleModels.map((model) => (
+              {truckModels.map((model) => (
                 <option key={model.id} value={model.id}>
                   {model.modelName}
                 </option>
@@ -136,9 +136,9 @@ const MotorcycleFilter = () => {
             </select>
           </div>
 
-          {/* Motorcycle Condition Dropdown */}
+          {/* Truck Condition Dropdown */}
           <div>
-            <label className="text-sm">Motorcycle Condition:</label>
+            <label className="text-sm">Truck Condition:</label>
             <select
               name="conditionId"
               value={filter.conditionId}
@@ -146,7 +146,7 @@ const MotorcycleFilter = () => {
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
             >
               <option value={0}>Select Condition</option>
-              {motorcycleConditions.map((condition) => (
+              {truckConditions.map((condition) => (
                 <option key={condition.id} value={condition.id}>
                   {condition.condition}
                 </option>
@@ -155,9 +155,9 @@ const MotorcycleFilter = () => {
           </div>
 
 
-          {/* Motorcycle Color Dropdown */}
+          {/* Truck Color Dropdown */}
           <div>
-            <label className="text-sm">Motorcycle Color:</label>
+            <label className="text-sm">Truck Color:</label>
             <select
               name="colorId"
               value={filter.colorId}
@@ -165,7 +165,7 @@ const MotorcycleFilter = () => {
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
             >
               <option value={0}>Select Color</option>
-              {motorcycleColors.map((color) => (
+              {truckColors.map((color) => (
                 <option key={color.id} value={color.id}>
                   {color.color}
                 </option>
@@ -174,9 +174,9 @@ const MotorcycleFilter = () => {
           </div>
 
 
-          {/* Motorcycle Fuel Type Dropdown */}
+          {/* Truck Fuel Type Dropdown */}
           <div>
-            <label className="text-sm">Motorcycle Fuel Type:</label>
+            <label className="text-sm">Truck Fuel Type:</label>
             <select
               name="fuelTypeId"
               value={filter.fuelTypeId}
@@ -184,17 +184,17 @@ const MotorcycleFilter = () => {
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
             >
               <option value={0}>Select Fuel Type</option>
-              {motorcycleFuelTypes.map((fuelType) => (
+              {truckFuelTypes.map((fuelType) => (
                 <option key={fuelType.id} value={fuelType.id}>
-                  {fuelType.fuel}
+                  {fuelType.fuelType}
                 </option>
               ))}
             </select>
           </div>
 
-          {/* Motorcycle Mileage Dropdown */}
+          {/* Truck Mileage Dropdown */}
           <div>
-            <label className="text-sm">Motorcycle Mileage:</label>
+            <label className="text-sm">Truck Mileage:</label>
             <select
               name="mileageId"
               value={filter.mileageId}
@@ -202,7 +202,7 @@ const MotorcycleFilter = () => {
               className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
             >
               <option value={0}>Select Mileage</option>
-              {motorcycleMileages.map((mileage) => (
+              {truckMileages.map((mileage) => (
                 <option key={mileage.id} value={mileage.id}>
                   {mileage.mileage}
                 </option>
@@ -210,43 +210,43 @@ const MotorcycleFilter = () => {
             </select>
           </div>
 
-          {/* Motorcycle Transmission Dropdown */}
-          <div>
-            <label className="text-sm">Motorcycle Transmission:</label>
-            <select
-              name="transmissionTypeId"
-              value={filter.transmissionTypeId}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
-            >
-              <option value={0}>Select Transmission</option>
-              {motorcycleTransmissions.map((transmission) => (
-                <option key={transmission.id} value={transmission.id}>
-                  {transmission.transmission}
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Truck Transmission Dropdown */}
+        <div>
+          <label className="text-sm">Truck Transmission:</label>
+          <select
+            name="transmissionTypeId"
+            value={filter.transmissionTypeId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Transmission</option>
+            {truckTransmissions.map((transmissionType) => (
+              <option key={transmissionType.id} value={transmissionType.id}>
+                {transmissionType.transmissionType}
+              </option>
+            ))}
+          </select>
+        </div>
 
-          {/* Motorcycle Type Dropdown */}
-          <div>
-            <label className="text-sm">Motorcycle Type:</label>
-            <select
-              name="typeId"
-              value={filter.typeId}
-              onChange={handleInputChange}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
-            >
-              <option value={0}>Select Type</option>
-              {motorcycleTypes.map((type) => (
-                <option key={type.id} value={type.id}>
-                  {type.type}
-                </option>
-              ))}
-            </select>
-          </div>
+        {/* Truck Version Dropdown */}
+        <div>
+          <label className="text-sm">Truck Version:</label>
+          <select
+            name="versionId"
+            value={filter.versionId}
+            onChange={handleInputChange}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:border-blue-500"
+          >
+            <option value={0}>Select Version</option>
+            {truckVersions.map((version) => (
+              <option key={version.id} value={version.id}>
+                {version.versionType}
+              </option>
+            ))}
+          </select>
+        </div>
 
-          {/* Motorcycle Start Date Input */}
+          {/* Truck Start Date Input */}
           <div>
             <label className="text-sm">Start Date:</label>
             <input
@@ -258,7 +258,7 @@ const MotorcycleFilter = () => {
             />
           </div>
 
-          {/* Motorcycle End Date Input */}
+          {/* Truck End Date Input */}
           <div>
             <label className="text-sm">End Date:</label>
             <input
@@ -275,14 +275,14 @@ const MotorcycleFilter = () => {
           className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
           onClick={handleFilter}
         >
-          Filter Motorcycles
+          Filter Trucks
         </button> <br />
-        <button onClick={() => navigate('/all-motorcycles')} className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Show All Listings</button>
+        <button onClick={() => navigate('/all-trucks')} className="bg-blue-500 text-white px-4 py-2 rounded mt-2">Show All Listings</button>
       </div>
      
       <Footer />
     </div>
-  );
-};
+  )
+}
 
-export default MotorcycleFilter;
+export default TruckFilter

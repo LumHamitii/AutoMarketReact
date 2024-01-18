@@ -1,9 +1,10 @@
-
+// CarShow.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import CarFilterComponent from '../components/CarFilterComponent'; 
 
 const CarShow = () => {
   const [cars, setCars] = useState([]);
@@ -78,43 +79,16 @@ const CarShow = () => {
       <div className="container mx-auto pt-10 pb-20 sm:pt-16 md:pt-20 flex-grow">
         <div className="flex flex-col md:flex-row items-center justify-between mb-4 md:mb-8 px-4">
           <h1 className="text-2xl md:text-4xl font-bold mb-4 md:mb-0">Car Listings</h1>
-          <div className="flex items-center space-x-4">
-            <div>
-              <label className="mr-2 text-base md:text-lg">Sort by Price:</label>
-              <select
-                value={sortOrder}
-                onChange={(e) => handleSortChange(e.target.value)}
-                className="border p-2 rounded text-sm md:text-base"
-              >
-                <option value="asc">Low to High</option>
-                <option value="desc">High to Low</option>
-              </select>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div>
-                <label className="mr-2 text-base md:text-lg">Filter by Price:</label>
-                <input
-                  type="number"
-                  placeholder="Min Price"
-                  value={minPrice}
-                  onChange={(e) => setMinPrice(e.target.value)}
-                  className="border p-2 rounded text-sm md:text-base"
-                />
-                <input
-                  type="number"
-                  placeholder="Max Price"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                  className="border p-2 rounded text-sm md:text-base"
-                />
-                <button onClick={handleFilter} className="bg-blue-500 text-white p-2 rounded text-sm md:text-base">
-                  Apply Filter
-                </button>
-              </div>
-            </div>
-          </div>
+          <CarFilterComponent
+            sortOrder={sortOrder}
+            handleSortChange={handleSortChange}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            setMinPrice={setMinPrice}
+            setMaxPrice={setMaxPrice}
+            handleFilter={handleFilter}
+          />
         </div>
-        {/* Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {displayedCars.map((car) => (
             <Link key={car.id} to={`/car/${car.id}`} className="w-full p-4">
@@ -137,7 +111,6 @@ const CarShow = () => {
             </Link>
           ))}
         </div>
-        {/* Pagination */}
         {totalPages > 1 && (
           <div className="flex justify-center mt-4">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (

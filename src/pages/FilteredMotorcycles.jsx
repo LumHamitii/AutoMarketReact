@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import MotorcycleFilterComponent from '../components/MotorcycleFilterComponent';
 
 const FilteredMotorcycles = () => {
   const location = useLocation();
@@ -53,11 +55,15 @@ const FilteredMotorcycles = () => {
     let filteredMotorcyclesCopy = [...filteredMotorcycles];
 
     if (minPrice !== '') {
-      filteredMotorcyclesCopy = filteredMotorcyclesCopy.filter((motorcycle) => parseFloat(motorcycle.price) >= parseFloat(minPrice));
+      filteredMotorcyclesCopy = filteredMotorcyclesCopy.filter(
+        (motorcycle) => parseFloat(motorcycle.price) >= parseFloat(minPrice)
+      );
     }
 
     if (maxPrice !== '') {
-      filteredMotorcyclesCopy = filteredMotorcyclesCopy.filter((motorcycle) => parseFloat(motorcycle.price) <= parseFloat(maxPrice));
+      filteredMotorcyclesCopy = filteredMotorcyclesCopy.filter(
+        (motorcycle) => parseFloat(motorcycle.price) <= parseFloat(maxPrice)
+      );
     }
     sortMotorcycles(filteredMotorcyclesCopy, sortOrder);
   };
@@ -75,41 +81,15 @@ const FilteredMotorcycles = () => {
       <div className="container mx-auto pt-10 pb-20 sm:pt-16 md:pt-20 flex-grow">
         <div className="flex flex-col md:flex-row items-center justify-between mb-4 md:mb-8 px-4">
           <h1 className="text-2xl md:text-4xl font-bold mb-4 md:mb-0">Filtered Motorcycle Listings</h1>
-          <div className="flex items-center space-x-4">
-            <div>
-              <label className="mr-2 text-base md:text-lg">Sort by Price:</label>
-              <select
-                value={sortOrder}
-                onChange={(e) => handleSortChange(e.target.value)}
-                className="border p-2 rounded text-sm md:text-base"
-              >
-                <option value="asc">Low to High</option>
-                <option value="desc">High to Low</option>
-              </select>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div>
-                <label className="mr-2 text-base md:text-lg">Filter by Price:</label>
-                <input
-                  type="number"
-                  placeholder="Min Price"
-                  value={minPrice}
-                  onChange={(e) => setMinPrice(e.target.value)}
-                  className="border p-2 rounded text-sm md:text-base"
-                />
-                <input
-                  type="number"
-                  placeholder="Max Price"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(e.target.value)}
-                  className="border p-2 rounded text-sm md:text-base"
-                />
-                <button onClick={handleFilter} className="bg-blue-500 text-white p-2 rounded text-sm md:text-base">
-                  Apply Filter
-                </button>
-              </div>
-            </div>
-          </div>
+          <MotorcycleFilterComponent
+            sortOrder={sortOrder}
+            handleSortChange={handleSortChange}
+            minPrice={minPrice}
+            maxPrice={maxPrice}
+            setMinPrice={setMinPrice}
+            setMaxPrice={setMaxPrice}
+            handleFilter={handleFilter}
+          />
         </div>
         {/* Cards */}
         {displayedMotorcycles.length === 0 ? (
@@ -131,7 +111,9 @@ const FilteredMotorcycles = () => {
                   <div className="text-base md:text-lg mb-2 font-semibold">{motorcycle.motorcycleBrand?.brandName}</div>
                   <div className="text-xs sm:text-base md:text-lg mb-2">Model: {motorcycle.motorcycleModel?.modelName}</div>
                   <div className="text-xs sm:text-base md:text-lg mb-2">Color: {motorcycle.motorcycleColor?.color}</div>
-                  <div className="text-xs sm:text-base md:text-lg mb-2">Fuel Type: {motorcycle.motorcycleFuelType?.fuelType}</div>
+                  <div className="text-xs sm:text-base md:text-lg mb-2">
+                    Fuel Type: {motorcycle.motorcycleFuelType?.fuelType}
+                  </div>
                   <div className="text-xs sm:text-base md:text-lg mb-2">Mileage: {motorcycle.motorcycleMileage?.mileage}</div>
                   <div className="text-base md:text-lg font-bold">{motorcycle.price}€</div>
                 </div>
@@ -146,7 +128,9 @@ const FilteredMotorcycles = () => {
               <button
                 key={page}
                 onClick={() => handlePageChange(page)}
-                className={`mx-2 p-2 rounded ${currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}
+                className={`mx-2 p-2 rounded ${
+                  currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'
+                }`}
               >
                 {page}
               </button>

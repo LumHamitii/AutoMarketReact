@@ -25,6 +25,11 @@ import MercedesModels from './pages/MercedesModels';
 import SellCar from './pages/SellCar';
 import MotorcycleFilter from './pages/MotorcycleFilter';
 import FilteredMotorcycles from './pages/FilteredMotorcycles';
+import TruckShow from './pages/TruckShow';
+import TruckFilter from './pages/TruckFilter';
+import FilteredTrucks from './pages/FilteredTrucks';
+import TruckDetails from './pages/TruckDetails';
+import TruckListings from './pages/TruckListings';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppRouter = () => {
@@ -35,11 +40,15 @@ const AppRouter = () => {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/cars-listing" element={<CarListings />} />
+      <Route path="/trucks-listing" element={<TruckListings />} />
       <Route path="/used-&-new-cars" element={<CarFilter />} />
       <Route path="/motorcycles" element={<MotorcycleFilter />} />
+      <Route path="/trucks" element={<TruckFilter />} />
       <Route path="/filtered-cars" element={<FilteredCars />} />
       <Route path="/filtered-motorcycles" element={<FilteredMotorcycles />} />
+      <Route path="/filtered-trucks" element={<FilteredTrucks />} />
       <Route path="/all-cars" element={<CarShow />} />
+      <Route path="/all-trucks" element={<TruckShow />} />
       <Route path="/car/:id" element={<CarDetails />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/admin" element={<Admin />} />
@@ -50,6 +59,7 @@ const AppRouter = () => {
       <Route path="/all-motorcycles" element={<MotorcycleShow />} />
       <Route path="/brands-&-models" element={<Brands />} />
       <Route path="/motorcycle/:id" element={<MotorcycleDetails />} />
+      <Route path="/truck/:id" element={<TruckDetails />} />
       <Route path="/mercedes" element={<MercedesModels />} />
       <Route path="cars-&-motorcycles" element={<SellCar />} />
       <Route path="*" element={<div>Page not found</div>} />

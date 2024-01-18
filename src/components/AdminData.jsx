@@ -5,6 +5,7 @@ import { useAuth } from '../AuthContext';
 const AdminData = () => {
   const [carCount, setCarCount] = useState(0);
   const [motorcycleCount, setMotorcycleCount] = useState(0);
+  const [truckCount, setTruckCount] = useState(0);
   const { userData } = useAuth();
 
   const fetchVehicleCount = async () => {
@@ -21,6 +22,14 @@ const AdminData = () => {
           motorcycle => motorcycle.userId === userData.userId
         );
         setMotorcycleCount(userMotorcycles.length);
+
+         // Fetch truck count
+
+         const truckResponse = await axios.get('https://localhost:7136/api/ApiTruck');
+         const userTrucks = truckResponse.data.filter(
+          truck => truck.userId === userData.userId
+        );
+        setTruckCount(userTrucks.length);
       }
     } catch (error) {
       console.error('Error fetching vehicle count:', error);
@@ -45,6 +54,13 @@ const AdminData = () => {
         <div className="flex items-center">
           <span className="text-4xl mr-2">{motorcycleCount}</span>
           <img src="/motorcycleIcon.png" alt="Motorcycle Icon" className="w-8 h-8" />
+        </div>
+      </div>
+      <div className="bg-blue-500 text-white p-4 rounded-lg shadow-md">
+        <h2 className="text-lg font-semibold mb-2">Trucks Added</h2>
+        <div className="flex items-center">
+          <span className="text-4xl mr-2">{truckCount}</span>
+          <img src="/truckIcon.png" alt="Car Icon" className="w-9 h-9" />
         </div>
       </div>
     </div>
