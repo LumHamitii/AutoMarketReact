@@ -30,6 +30,7 @@ import TruckFilter from './pages/TruckFilter';
 import FilteredTrucks from './pages/FilteredTrucks';
 import TruckDetails from './pages/TruckDetails';
 import TruckListings from './pages/TruckListings';
+import Information from './pages/Information';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppRouter = () => {
@@ -62,6 +63,8 @@ const AppRouter = () => {
       <Route path="/truck/:id" element={<TruckDetails />} />
       <Route path="/mercedes" element={<MercedesModels />} />
       <Route path="cars-&-motorcycles" element={<SellCar />} />
+      <Route path="information" element={<Information />} />
+
       <Route path="*" element={<div>Page not found</div>} />
     </Routes>
   );

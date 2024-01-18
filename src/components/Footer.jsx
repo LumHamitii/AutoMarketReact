@@ -16,9 +16,9 @@ const Footer = () => {
 
         <div className="flex flex-col items-center mt-4 md:mt-0">
           <p className="font-bold mb-1">Quick Links</p>
-         <Link to="/used-&-new-cars"> <a href="#" className="hover:text-gray-300">Cars</a></Link>
-          <a href="#" className="hover:text-gray-300">Motorcycles</a>
-          <a href="#" className="hover:text-gray-300">Trucks</a>
+         <Link to="/all-cars"> <a href="#" className="hover:text-gray-300">Cars</a></Link>
+          <a href="all-motorcycles" className="hover:text-gray-300">Motorcycles</a>
+          <a href="all-trucks" className="hover:text-gray-300">Trucks</a>
         </div>
 
         <div className="flex flex-col items-center mt-4 md:mt-0">
