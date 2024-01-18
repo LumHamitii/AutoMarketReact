@@ -38,7 +38,7 @@ const CarList = () => {
     <div>
       <h1 className="text-3xl font-semibold mb-6">Cars List</h1>
       <h3>
-        <Link to="/car-listing" className="text-blue-500">
+        <Link to="/cars-listing" className="text-blue-500">
           <li className="p-4 list-none">
             Create a new car listing
           </li>
