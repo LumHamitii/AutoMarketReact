@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
+import { useNavigate  } from 'react-router-dom';
+
 
 const CarList = () => {
   const [cars, setCars] = useState([]);
   const { userData } = useAuth();
+  const navigate = useNavigate();
 
   const fetchCars = async () => {
     try {
@@ -20,6 +23,10 @@ const CarList = () => {
     }
   };
 
+  const handleEdit = (carId) => {
+    // Navigate to the Edit page for the specific car
+    navigate(`/edit-car/${carId}`);
+  };
   const handleDelete = async (carId) => {
     try {
       await axios.delete(`https://localhost:7136/api/ApiCar/${carId}`);
@@ -52,6 +59,12 @@ const CarList = () => {
               <strong>Description:</strong> {car.description}<br />
               <strong>Price:</strong> {car.price}€<br />
             </div>
+            <button 
+              onClick={() => handleEdit(car.id)} 
+              className="bg-green-500 text-white rounded py-2 px-4 hover:bg-red-600"
+            >
+              Edit
+            </button>
             <button 
               onClick={() => handleDelete(car.id)} 
               className="bg-red-500 text-white rounded py-2 px-4 hover:bg-red-600"
