@@ -10,6 +10,10 @@ const RegisterPage = () => {
 
   const handleRegister = async () => {
     try {
+      if (!/(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}/.test(password)) {
+        setError('Password must contain uppercase letter,number,character.');
+        return;
+      }
       const response = await axios.post('https://localhost:7136/api/Register', {
         email: email,
         password: password,
