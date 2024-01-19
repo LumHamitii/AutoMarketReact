@@ -32,6 +32,7 @@ import TruckDetails from './pages/TruckDetails';
 import TruckListings from './pages/TruckListings';
 import Information from './pages/Information';
 import CarEdit from './pages/CarEdit';
+import MotorcycleEdit from './pages/MotorcycleEdit';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const AppRouter = () => {
@@ -62,6 +63,7 @@ const AppRouter = () => {
       <Route path="/all-motorcycles" element={<MotorcycleShow />} />
       <Route path="/brands-&-models" element={<Brands />} />
       <Route path="/motorcycle/:id" element={<MotorcycleDetails />} />
+      <Route path="/edit-motorcycle/:id" element={<MotorcycleEdit />} />
       <Route path="/truck/:id" element={<TruckDetails />} />
       <Route path="/mercedes" element={<MercedesModels />} />
       <Route path="cars-&-motorcycles" element={<SellCar />} />

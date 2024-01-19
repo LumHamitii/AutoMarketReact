@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 
 const MotorcycleList = () => {
   const [motorcycles, setMotorcycles] = useState([]);
   const { userData } = useAuth();
+  const navigate = useNavigate();
 
   const fetchMotorcycles = async () => {
     try {
@@ -18,7 +19,10 @@ const MotorcycleList = () => {
       console.error('Error fetching motorcycles:', error);
     }
   };
-
+  const handleEdit = (motorcycleId) => {
+    
+    navigate(`/edit-motorcycle/${motorcycleId}`);
+  };
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://localhost:7136/api/ApiMotorcycle/${id}`);
@@ -50,6 +54,12 @@ const MotorcycleList = () => {
               <strong>Description:</strong> {motorcycle.description}<br />
               <strong>Price:</strong> {motorcycle.price}<br />
             </div>
+            <button 
+              onClick={() => handleEdit(motorcycle.id)}
+              className="px-4 py-2 bg-green-500 text-white rounded hover:bg-red-600"
+            >
+              Edit
+            </button>
             <button 
               onClick={() => handleDelete(motorcycle.id)}
               className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
