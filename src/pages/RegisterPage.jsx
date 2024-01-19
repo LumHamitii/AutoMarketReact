@@ -10,22 +10,44 @@ const RegisterPage = () => {
 
   const handleRegister = async () => {
     try {
-      if (!/(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}/.test(password)) {
-        setError('Password must contain uppercase letter,number,character.');
+      if (!password || password.length < 8) {
+        setError('Password must be at least 8 characters long.');
         return;
       }
+  
+      if (!/(?=.*[A-Z])/.test(password)) {
+        setError('Password must contain at least one uppercase letter.');
+        return;
+      }
+  
+      if (!/\d/.test(password)) {
+        setError('Password must contain at least one number.');
+        return;
+      }
+  
+      if (!/(?=.*[!@#$%^&*()_+.])/.test(password)) {
+        setError('Password must contain at least one special character.');
+        return;
+      }
+  
+      if (password !== confirmPassword) {
+        setError('Passwords do not match.');
+        return;
+      }
+  
       const response = await axios.post('https://localhost:7136/api/Register', {
         email: email,
         password: password,
         confirmPassword: confirmPassword
       });
-
+  
       console.log(response.data);
       window.location.href = '/login';
     } catch (error) {
-      setError(error.response.data);
+      setError(error.response ? error.response.data : 'An error occurred during registration.');
     }
   };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">

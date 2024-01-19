@@ -49,10 +49,10 @@ const App = () => {
             </p>
             <div className="flex space-x-4 justify-center items-center">
               <button className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-full">
-                Get Started
+                <a href="/register">Get Started</a>
               </button>
               <button className="bg-gray-800 hover:bg-gray-600 text-white px-4 py-2 rounded-full">
-                Learn More
+                <a href="/information">Learn More</a>
               </button>
             </div>
             <div className="mt-6">
