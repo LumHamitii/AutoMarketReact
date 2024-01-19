@@ -12,6 +12,7 @@ const MotorcycleEdit = () => {
     price: 0,
     firstRegistration: '',
     enginePower: 0,
+    location: 0,
     motorcycleBrandId: 0,
     motorcycleModelId: 0,
     motorcycleConditionId: 0,
@@ -94,6 +95,7 @@ const MotorcycleEdit = () => {
       formData.append('price', editMotorcycle.price);
       formData.append('firstRegistration', editMotorcycle.firstRegistration);
       formData.append('enginePower', editMotorcycle.enginePower);
+      formData.append('location', editMotorcycle.enginePower);
       formData.append('motorcycleBrandId', editMotorcycle.motorcycleBrandId);
       formData.append('motorcycleModelId', editMotorcycle.motorcycleModelId);
       formData.append('motorcycleConditionId', editMotorcycle.motorcycleConditionId);
@@ -102,7 +104,6 @@ const MotorcycleEdit = () => {
       formData.append('motorcycleMileageId', editMotorcycle.motorcycleMileageId);
       formData.append('motorcycleTransmissionId', editMotorcycle.motorcycleTransmissionId);
       formData.append('motorcycleTypeId', editMotorcycle.motorcycleTypeId);
-      formData.append('motorcycleYearId', editMotorcycle.motorcycleYearId);
       formData.append('userId', userData.userId);
 
       for (let i = 0; i < editMotorcycle.files.length; i++) {
@@ -155,6 +156,9 @@ const MotorcycleEdit = () => {
 
           <label>Engine Power:</label>
           <input type="number" name="enginePower" value={editMotorcycle.enginePower} onChange={handleInputChange} />
+
+          <label>Location:</label>
+          <input type="text" name="location" value={editMotorcycle.location} onChange={handleInputChange} />
 
           <label>Motorcycle Brand:</label>
           <select name="motorcycleBrandId" value={editMotorcycle.motorcycleBrandId} onChange={handleInputChange}>

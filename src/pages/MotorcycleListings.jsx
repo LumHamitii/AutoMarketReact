@@ -12,6 +12,7 @@ const MotorcycleListings = () => {
     price: 0,
     firstRegistration: '',
     enginePower: 0,
+    location: 0,
     motorcycleBrandId: 0,
     motorcycleModelId: 0,
     motorcycleConditionId: 0,
@@ -64,8 +65,6 @@ const MotorcycleListings = () => {
         const typesResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleTypes');
         setMotorcycleTypes(typesResponse.data);
 
-        const yearsResponse = await axios.get('https://localhost:7136/api/ApiMotorcycle/GetMotorcycleYears');
-        setMotorcycleYears(yearsResponse.data);
       } catch (error) {
         console.error('Error fetching motorcycle dropdown options:', error);
       }
@@ -94,6 +93,7 @@ const MotorcycleListings = () => {
       formData.append('price', newMotorcycle.price);
       formData.append('firstRegistration', newMotorcycle.firstRegistration);
       formData.append('enginePower', newMotorcycle.enginePower);
+      formData.append('location', newMotorcycle.location);
       formData.append('motorcycleBrandId', newMotorcycle.motorcycleBrandId);
       formData.append('motorcycleModelId', newMotorcycle.motorcycleModelId);
       formData.append('motorcycleConditionId', newMotorcycle.motorcycleConditionId);
@@ -102,7 +102,6 @@ const MotorcycleListings = () => {
       formData.append('motorcycleMileageId', newMotorcycle.motorcycleMileageId);
       formData.append('motorcycleTransmissionId', newMotorcycle.motorcycleTransmissionId);
       formData.append('motorcycleTypeId', newMotorcycle.motorcycleTypeId);
-      formData.append('motorcycleYearId', newMotorcycle.motorcycleYearId);
       
       formData.append('userId', userData.userId);
 
@@ -152,6 +151,9 @@ const MotorcycleListings = () => {
   
           <label>Engine Power:</label>
           <input type="number" name="enginePower" value={newMotorcycle.enginePower} onChange={handleInputChange} />
+
+          <label>Location:</label>
+          <input type="text" name="location" value={newMotorcycle.loaction} onChange={handleInputChange} />
   
           <label>Motorcycle Brand:</label>
           <select name="motorcycleBrandId" value={newMotorcycle.motorcycleBrandId} onChange={handleInputChange}>
@@ -237,16 +239,7 @@ const MotorcycleListings = () => {
   ))}
 </select>
 
-<label>Motorcycle Year:</label>
-<select name="motorcycleYearId" value={newMotorcycle.motorcycleYearId} onChange={handleInputChange}>
-  <option value={0}>Select Year</option>
-  {motorcycleYears.map((yearOfProduction) => (
-    <option key={yearOfProduction.id} value={yearOfProduction.id}>
-      {yearOfProduction.yearOfProduction}
-    </option>
-  ))}
-   <input type="hidden" name="userId" value={newMotorcycle.userId} />
-</select>
+
           <label>Photos:</label>
           <input type="file" name="motorcyclePhotos" multiple onChange={handleFileChange} />
           <button className="bg-blue-500 text-white px-4 py-2 rounded mt-4" onClick={handleSave}>

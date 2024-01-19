@@ -38,22 +38,21 @@ const MotorcycleList = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-semibold mb-6">Motorcycles List</h1>
-      <h3>
-        <Link to="/motorcycle-listing" className="text-blue-500">
-          <li className="p-4 list-none">
-            Create a new motorcycle listing
-          </li>
-        </Link>
-      </h3>
-      <ul>
-        {motorcycles.map(motorcycle => (
-          <li key={motorcycle.id} className="flex justify-between items-center p-4 border-b">
-            <div>
-              <strong>Brand:</strong> {motorcycle.motorcycleBrand ? motorcycle.motorcycleBrand.brandName : 'N/A'}<br/>
-              <strong>Description:</strong> {motorcycle.description}<br />
-              <strong>Price:</strong> {motorcycle.price}<br />
-            </div>
+    <h1 className="text-3xl font-semibold mb-6">Motorcycles List</h1>
+    <h3>
+      <Link to="/motorcycle-listing" className="text-blue-500">
+        <li className="p-4 list-none">Create a new motorcycle listing</li>
+      </Link>
+    </h3>
+    <ul>
+      {motorcycles.map(motorcycle => (
+        <li key={motorcycle.id} className="flex justify-between items-center p-4 border-b">
+          <div>
+            <strong>Brand:</strong> {motorcycle.motorcycleBrand ? motorcycle.motorcycleBrand.brandName : 'N/A'}<br/>
+            <strong>Description:</strong> {motorcycle.description}<br />
+            <strong>Price:</strong> {motorcycle.price}<br />
+          </div>
+          <div className="flex space-x-2"> {/* Added container for buttons with spacing */}
             <button 
               onClick={() => handleEdit(motorcycle.id)}
               className="px-4 py-2 bg-green-500 text-white rounded hover:bg-red-600"
@@ -66,10 +65,11 @@ const MotorcycleList = () => {
             >
               Delete
             </button>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
   );
 };
 

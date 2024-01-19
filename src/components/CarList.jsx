@@ -59,18 +59,20 @@ const CarList = () => {
               <strong>Description:</strong> {car.description}<br />
               <strong>Price:</strong> {car.price}€<br />
             </div>
-            <button 
-              onClick={() => handleEdit(car.id)} 
-              className="bg-green-500 text-white rounded py-2 px-4 hover:bg-red-600"
-            >
-              Edit
-            </button>
-            <button 
-              onClick={() => handleDelete(car.id)} 
-              className="bg-red-500 text-white rounded py-2 px-4 hover:bg-red-600"
-            >
-              Delete
-            </button>
+            <div className="flex space-x-2"> 
+              <button 
+                onClick={() => handleEdit(car.id)} 
+                className="bg-green-500 text-white rounded py-2 px-4 hover:bg-red-600"
+              >
+                Edit
+              </button>
+              <button 
+                onClick={() => handleDelete(car.id)} 
+                className="bg-red-500 text-white rounded py-2 px-4 hover:bg-red-600"
+              >
+                Delete
+              </button>
+            </div>
           </li>
         ))}
       </ul>
